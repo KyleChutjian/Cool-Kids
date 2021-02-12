@@ -11,46 +11,52 @@ public class Main {
     	double chips=1.00;
     	double soda=2.00;
     	double total = 0.00;
+    	int payment = 0;
 
 
     	Scanner scanner = new Scanner(System.in);
 
 		System.out.println("Welcome to the vending machine! Here is a list of all of the snacks that are available to purchase!");
-		System.out.println("Pretzels: $2.00, Granola Bar: $1.00, Chips: $3.00, Soda: $2.00");
-    	System.out.println("Which snack would you like to buy?");
-		String snack = scanner.nextLine();
+		String snack = "";
 		boolean validItem;
 		boolean readyToCheckOut = true;
+		boolean paid = false;
 		do {
 			do {
+				System.out.println("Which snack would you like to buy?");
+				System.out.println(" - Pretzels ($2)");
+				System.out.println(" - Granola Bar ($3)");
+				System.out.println(" - Chips ($1)");
+				System.out.println(" - Soda ($2)");
+				snack = scanner.nextLine();
 				switch (snack.toLowerCase()) {
 					case "pretzels":
-						System.out.println("That will be $2.00. Will that be all?");
 						total += pretzels;
+						System.out.println("Pretzels ");
+						System.out.println("Your total is " + total + ". Will that be all? (Y/N)");
 						validItem = true;
 						break;
-					case "granolabar":
-						System.out.println("That will be $1.00. Will that be all?");
+					case "granola bar":
 						total += granolaBar;
+						System.out.println("Your total is " + total + ". Will that be all? (Y/N)");
 						validItem = true;
 						break;
 					case "chips":
-						System.out.println("That will be $3.00. Will that be all?(Y/N)");
 						total += chips;
+						System.out.println("Your total is " + total + ". Will that be all? (Y/N)");
 						validItem = true;
 						break;
 					case "soda":
-						System.out.println("That will be $2.00. Will that be all?(Y/N)");
 						total += soda;
+						System.out.println("Your total is " + total + ". Will that be all? (Y/N)");
 						validItem = true;
 						break;
 					default:
 						System.out.println("Sorry, we don't have that. Please try again.");
 						validItem = false;
 				}
-				snack = scanner.nextLine();
 			} while (!validItem);
-			switch (scanner.nextLine()) {
+			switch (scanner.nextLine().toUpperCase()) {
 				case "Y":
 					readyToCheckOut = true;
 					break;
@@ -60,7 +66,34 @@ public class Main {
 				default:
 					System.out.println("Bruh. What was that? Step up your game, casual. Smh my head. Mh.");
 			}
+
+
+
 		} while (!readyToCheckOut);
+		System.out.println("Your total is $" + (int)total + ".");
+		while (!paid) {
+
+			System.out.println("Please enter the number of one dollar bills you would like to enter");
+			payment += scanner.nextInt();
+			scanner.nextLine();
+			if (total > payment) {
+				System.out.println("The total is $" + (int)total + ", you only put in $" + payment + ".");
+				paid=false;
+			} else {
+				System.out.println("Do you want to confirm this purchase? (Y/N)");
+				if (scanner.nextLine().equalsIgnoreCase("Y")) {
+					System.out.println("Your change is $" + (int)(payment - total) + ".");
+					System.out.println("Enjoy your tasty snacks!");
+				} else {
+					System.out.println((int)payment + " dollars were refunded, your loss.");
+				}
+				paid=true;
+			}
+
+		}
+
+
+
     }
     
     
