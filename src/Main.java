@@ -1,8 +1,9 @@
 import java.util.Scanner;
 
 public class Main {
-	
+
 	public String snack;
+	protected boolean validItem;
 
     public static void main(String[] args) {
 
@@ -10,7 +11,7 @@ public class Main {
     	double granolaBar=3.00;
     	double chips=1.00;
     	double soda=2.00;
-    	double total = 0.00;
+    	double total = 0;
     	int payment = 0;
 
 
@@ -18,7 +19,6 @@ public class Main {
 
 		System.out.println("Welcome to the vending machine! Here is a list of all of the snacks that are available to purchase!");
 		String snack = "";
-		boolean validItem;
 		boolean readyToCheckOut = true;
 		boolean paid = false;
 		do {
@@ -32,9 +32,7 @@ public class Main {
 				switch (snack.toLowerCase()) {
 					case "pretzels":
 						total += pretzels;
-						System.out.println("Pretzels ");
 						System.out.println("Your total is " + total + ". Will that be all? (Y/N)");
-						validItem = true;
 						break;
 					case "granola bar":
 						total += granolaBar;
@@ -64,7 +62,7 @@ public class Main {
 					readyToCheckOut = false;
 					break;
 				default:
-					System.out.println("Bruh. What was that? Step up your game, casual. Smh my head. Mh.");
+					System.out.println("Please choose yes (Y) or no (N).");
 			}
 
 
@@ -95,7 +93,4 @@ public class Main {
 
 
     }
-    
-    
-
 }
