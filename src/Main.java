@@ -13,7 +13,7 @@ public class Main {
     	double soda=2.00;
     	double total = 0;
     	int payment = 0;
-
+    	boolean validItem = false;
 
     	Scanner scanner = new Scanner(System.in);
 
